@@ -35,6 +35,10 @@ String -(Parser)-> AST (抽象構文木) -(Evaluator)-> (何らかの値)
 * [x] コンスセル (1 . 10) (fib . (3 . nil))
 	* [ ] リスト (+ 1 2 3) -> (+ . (1 . (2 . (3 . nil))))
 * [ ] Printer
+* [x] 整数
+* [x] シンボル
+* [x] コンスセル
+	* [ ] リスト記法
 * [ ] Int
 * [ ] Symbol
 * [ ] Cons cell

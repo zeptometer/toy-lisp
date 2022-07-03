@@ -5,7 +5,14 @@ public class Printer {
         return switch (exp) {
             case SExpression.Int x -> Integer.toString(x.value());
             case SExpression.Symbol s -> s.name();
-            default -> throw new UnsupportedOperationException("doom!");
+            case SExpression.ConsCell cell -> printConsCell(cell);
         };
+    }
+
+    private static String printConsCell(SExpression.ConsCell cell) {
+        String left = print(cell.car());
+        String right = print(cell.cdr());
+
+        return "(" + left + " . " + right + ")";
     }
 }

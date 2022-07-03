@@ -1,21 +1,32 @@
 package tokyo.yabaitech.toylisp;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static tokyo.yabaitech.toylisp.SExpression.ConsCell;
+import static tokyo.yabaitech.toylisp.SExpression.Int;
+import static tokyo.yabaitech.toylisp.SExpression.Symbol;
 
 import org.junit.jupiter.api.Test;
 
 public class PrinterTest {
     @Test
     public void printInteger() {
-        assertEquals("0", Printer.print(new SExpression.Int(0)));
-        assertEquals("1", Printer.print(new SExpression.Int(1)));
-        assertEquals("123", Printer.print(new SExpression.Int(123)));
+        assertEquals("0", Printer.print(new Int(0)));
+        assertEquals("1", Printer.print(new Int(1)));
+        assertEquals("123", Printer.print(new Int(123)));
     }
 
     @Test
     public void printSymbol() {
-        assertEquals("nil", Printer.print(new SExpression.Symbol("nil")));
-        assertEquals("hoge", Printer.print(new SExpression.Symbol("hoge")));
-        assertEquals("fib", Printer.print(new SExpression.Symbol("fib")));
+        assertEquals("nil", Printer.print(new Symbol("nil")));
+        assertEquals("hoge", Printer.print(new Symbol("hoge")));
+        assertEquals("fib", Printer.print(new Symbol("fib")));
+    }
+
+    @Test
+    public void printConsCell() {
+        assertEquals("(1 . 1)", Printer.print(new ConsCell(new Int(1), new Int(1))));
+        assertEquals(
+                "(1 . (x . 2))",
+                Printer.print(new ConsCell(new Int(1), new ConsCell(new Symbol("x"), new Int(2)))));
     }
 }
