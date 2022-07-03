@@ -17,7 +17,7 @@ public class PrinterTest {
 
     @Test
     public void printSymbol() {
-        assertEquals("nil", Printer.print(new Symbol("nil")));
+        assertEquals("()", Printer.print(new Symbol("nil")));
         assertEquals("hoge", Printer.print(new Symbol("hoge")));
         assertEquals("fib", Printer.print(new Symbol("fib")));
     }
@@ -26,7 +26,13 @@ public class PrinterTest {
     public void printConsCell() {
         assertEquals("(1 . 1)", Printer.print(new ConsCell(new Int(1), new Int(1))));
         assertEquals(
-                "(1 . (x . 2))",
+                "(1 x . 2)",
                 Printer.print(new ConsCell(new Int(1), new ConsCell(new Symbol("x"), new Int(2)))));
+        assertEquals("()", Printer.print(new Symbol("nil")));
+        assertEquals("(1)", Printer.print(new ConsCell(new Int(1), new Symbol("nil"))));
+        assertEquals(
+                "(1 2)",
+                Printer.print(
+                        new ConsCell(new Int(1), new ConsCell(new Int(2), new Symbol("nil")))));
     }
 }

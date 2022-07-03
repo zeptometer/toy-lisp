@@ -31,19 +31,17 @@ String -(Parser)-> AST (抽象構文木) -(Evaluator)-> (何らかの値)
 * [x] 抽象構文木
 * [x] 整数リテラル 1, 10
 * [x] シンボル x, define, if
-	* [ ] nil
+	* [x] nil
 * [x] コンスセル (1 . 10) (fib . (3 . nil))
-	* [ ] リスト (+ 1 2 3) -> (+ . (1 . (2 . (3 . nil))))
-* [ ] Printer
+	* [x] リスト (+ 1 2 3) -> (+ . (1 . (2 . (3 . nil))))
+* [x] Printer
 * [x] 整数
 * [x] シンボル
 * [x] コンスセル
-	* [ ] リスト記法
-* [ ] Int
-* [ ] Symbol
-* [ ] Cons cell
+	* [x] リスト記法
 * [ ] Parser
 * [ ] Evaluator
+* [ ] Intern
 * [ ] REPL
 
 ## 方針
