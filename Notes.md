@@ -20,7 +20,7 @@ yuruitech.fm は大体都内のソフトウェアエンジニアがゆるく
 * TDD (Test-Driven Development, テスト駆動開発)で進める
 
 ## 要求
-* [ ] 抽象構文木
+* [x] 抽象構文木
 * [ ] Printer (抽象構文木 -> String)
 * [ ] Parser (String -> 抽象構文木)
 * [ ] Evaluator (抽象構文木を実行)
