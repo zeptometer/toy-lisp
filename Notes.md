@@ -1,5 +1,4 @@
 # ゆるいテック.fm
-
 yuruitech.fm は大体都内のソフトウェアエンジニアがゆるく
 ソフトウェアエンジニアリングについて語るチャンネルです。
 
@@ -14,31 +13,9 @@ yuruitech.fm は大体都内のソフトウェアエンジニアがゆるく
         (+ (fib (- x 1)) (fib (- x 2))))))
 ```
 
-## 要求
-* 整数リテラル
-* define
-* lambda (anonymous function, 匿名関数)
-* if
-* 算術 (<=, +, -)
-* 再帰的定義
-* 関数呼び出し
-* REPL (Read-Eval-Print Loop)
-  - インタープリタ
-
-## TODO
-String -(Parser)-> AST (抽象構文木) -(Evaluator)-> (何らかの値)
-
-* [x] 抽象構文木
-  * [x] 整数リテラル 1, 10
-  * [x] シンボル x, define, if
-    * [ ] nil
-  * [x] コンスセル (1 . 10) (fib . (3 . nil)) 
-    * [ ] リスト (+ 1 2 3) -> (+ . (1 . (2 . (3 . nil))))
-* [ ] Printer
-* [ ] Parser
-* [ ] Evaluator
-* [ ] REPL
-
 ## 方針
-* Java 17 + pattern match
+* プログラミング言語：Java 18 + pattern match
 * TDD (Test-Driven Development, テスト駆動開発)で進める
+
+## 要求
+TBA
