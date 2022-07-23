@@ -18,6 +18,13 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+compileJava {
+    options.compilerArgs += ["--enable-preview"]
+}
+compileTestJava {
+    options.compilerArgs += ["--enable-preview"]
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
@@ -33,4 +40,8 @@ spotless {
 	java {
 		googleJavaFormat('1.15.0').aosp().reflowLongStrings()
 	}
+}
+
+test {
+    jvmArgs '--enable-preview'
 }
