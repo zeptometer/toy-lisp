@@ -21,7 +21,7 @@ yuruitech.fm は大体都内のソフトウェアエンジニアがゆるく
 
 ## 要求
 * [x] 抽象構文木
-* [ ] Printer (抽象構文木 -> String)
+* [x] Printer (抽象構文木 -> String)
 * [ ] Parser (String -> 抽象構文木)
 * [ ] Evaluator (抽象構文木を実行)
 * [ ] REPL
