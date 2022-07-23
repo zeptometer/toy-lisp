@@ -2,10 +2,16 @@ package tokyo.yabaitech.toylisp;
 
 import tokyo.yabaitech.toylisp.ParseResult.ParseSuccess;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import tokyo.yabaitech.toylisp.ParseResult.ParseFailure;
+import tokyo.yabaitech.toylisp.SExpr.Bool;
+import tokyo.yabaitech.toylisp.SExpr.Cons;
+import tokyo.yabaitech.toylisp.SExpr.Int;
+import tokyo.yabaitech.toylisp.SExpr.Nil;
 
 /*
-
 
 SExpression ->
   Atom (先頭がカッコじゃない)
@@ -63,8 +69,31 @@ public class Parser {
     }
 
     // 先頭のカッコを除いたConsCellをパースする
-    static ParseResult parseConsCell(String token) {
-        return new ParseFailure("unimplemented");
+    // x) -> new Cons(parse(x), new Nil())
+    static ParseResult parseConsCell(String s) {
+        var offset = 0;
+        var parsedCells = new ArrayList<SExpr>();
+        do {
+            var parseResult = parse(s);
+            switch (parseResult) {
+                case ParseFailure failure:
+                    return failure;
+                case ParseSuccess success:
+                    parsedCells.add(success.result());
+                    s = s.substring(success.charsRead());
+                    offset += success.charsRead();
+            }
+            var spaceOffset = skipSpace(s);
+            s = s.substring(spaceOffset);
+            offset += spaceOffset;
+        } while (!s.isEmpty() && s.charAt(0) != ')');
+        if (s.charAt(0) != ')') {
+            return new ParseFailure("expected )");
+        }
+        offset += 1;
+        Collections.reverse(parsedCells);
+        return new ParseResult.ParseSuccess(offset,
+                parsedCells.stream().reduce(new Nil(), (sExpr, cons) -> new Cons(cons, sExpr)));
     }
 
     /**

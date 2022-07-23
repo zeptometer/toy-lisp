@@ -2,6 +2,7 @@ package tokyo.yabaitech.toylisp;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import tokyo.yabaitech.toylisp.SExpr.Bool;
@@ -61,9 +62,31 @@ public class ParserTests {
     }
 
     @Test
-    void parseConsCell() {
+    void parseProperList() {
         assertEquals(new ParseSuccess(3, new Cons(new Int(1), new Nil())), Parser.parse("(1)"));
         assertEquals(new ParseSuccess(5, new Cons(new Int(1), new Cons(new Int(2), new Nil()))), Parser.parse("(1 2)"));
+        SExpr l23 = new Cons(new Int(2), new Cons(new Int(3), new Nil()));
+        assertEquals(new ParseSuccess(9, new Cons(new Int(1), new Cons(l23, new Nil()))),
+                Parser.parse("(1 (2 3))"));
+        assertEquals(new ParseSuccess(7, new Cons(new Int(1), l23)),
+                Parser.parse("(1 2 3)"));
+        SExpr list = new Nil();
+        for (int i = 6; i >= 1; i--) {
+            list = new Cons(new Int(i), list);
+        }
+        assertEquals(new ParseSuccess(13, list),
+                Parser.parse("(1 2 3 4 5 6)"));
+        list = new Nil();
+        for (int i = 10; i >= 1; i--) {
+            list = new Cons(new Int(i), list);
+        }
+        assertEquals(new ParseSuccess(22, list),
+                Parser.parse("(1 2 3 4 5 6 7 8 9 10)"));
+    }
+
+    @Disabled
+    @Test
+    void parseImproperList() {
         assertEquals(new ParseSuccess(7, new Cons(new Int(1), new Int(2))), Parser.parse("(1 . 2)"));
         assertEquals(new ParseSuccess(9, new Cons(new Int(1), new Cons(new Int(2), new Int(3)))),
                 Parser.parse("(1 2 . 3)"));
